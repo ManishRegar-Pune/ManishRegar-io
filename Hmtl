@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manish Regar - Official Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manish Regar - Ethical Hacker, Web Developer, Social Media Expert. Affordable services, secure solutions, and 24x7 support.">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+  <style>
+    :root {
+      --bg: #101010;
+      --card: #181818;
+      --white: #fffbea;
+      --accent: #fff4c2;
+      --glow: 0 0 12px #fffbea, 0 0 24px #fff4c2;
+      --shadow: 0 2px 16px rgba(0,0,0,0.7);
+      --border: #2a2a2a;
+      --warm: #f7e9b5;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+      min-height: 100vh;
+      scroll-behavior: smooth;
+    }
+    header {
+      background: var(--card);
+      box-shadow: var(--shadow);
+      padding: 2.2rem 1.5rem 1.2rem 1.5rem;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+    .logo {
+      font-weight: bold;
+      font-size: 2.2rem;
+      letter-spacing: 2px;
+      color: var(--accent);
+      text-shadow: var(--glow);
+    }
+    .subtitle {
+      color: var(--white);
+      opacity: 0.7;
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+    .menu-btn {
+      position: absolute;
+      left: 1.2rem;
+      top: 2rem;
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-size: 2.2rem;
+      cursor: pointer;
+      z-index: 1002;
+      transition: color 0.2s;
+    }
+    .menu-btn:hover { color: var(--warm); }
+    .menu-modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(10,10,10,0.97);
+      z-index: 1001;
+      display: none;
+      flex-direction: column;
+      padding: 0;
+      animation: fadeIn 0.3s;
+    }
+    .menu-modal.active { display: flex; }
+    .menu-list {
+      margin: 5rem auto 0 auto;
+      width: 90vw; max-width: 400px;
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .menu-list button {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid #2222;
+      text-align: left;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .menu-list button:last-child { border-bottom: none; }
+    .menu-list button:hover { color: var(--accent); }
+    .close-menu {
+      position: absolute;
+      right: 2rem;
+      top: 2rem;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      color: var(--accent);
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .close-menu:hover { color: var(--warm); }
+    main {
+      max-width: 700px;
+      margin: 2.5rem auto 0 auto;
+      padding: 1.5rem;
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      animation: fadeInUp 0.6s;
+    }
+    section {
+      margin-bottom: 2.5rem;
+    }
+    h2 {
+      color: var(--accent);
+      text-shadow: var(--glow);
+      margin-top: 0;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+    .glow {
+      color: var(--accent);
+      text-shadow: var(--glow);
+    }
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #191919;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+      margin: 1rem 0;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 8px #0007;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background: var(--warm);
+      color: #101010;
+    }
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin: 1rem 0;
+      align-items: center;
+    }
+    .contact-btn {
+      background: var(--card);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 50px;
+      padding: 0.7rem 1.4rem;
+      font-size: 1.1rem;
+      margin: 0.3rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      box-shadow: 0 2px 8px #0004;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      text-decoration: none;
+    }
+    .contact-btn:hover {
+      background: var(--accent);
+      color: #191919;
+    }
+    .floating-support {
+      position: fixed;
+      bottom: 1.7rem;
+      right: 1.7rem;
+      background: var(--accent);
+      color: #191919;
+      border-radius: 50%;
+      box-shadow: 0 2px 12px #0008;
+      width: 62px; height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      cursor: pointer;
+      z-index: 1000;
+      border: 3px solid var(--card);
+      transition: background 0.2s;
+      animation: floatIn 1s;
+    }
+    .floating-support:hover { background: var(--warm); }
+    .floating-email {
+      position: fixed;
+      bottom: 1.7rem;
+      left: 1.7rem;
+      background: var(--card);
+      color: var(--accent);
+      border-radius: 50%;
+      width: 52px; height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 2px 8px #0007;
+      cursor: pointer;
+      z-index: 999;
+      border: 2px solid var(--accent);
+      animation: floatIn 1.2s;
+      transition: background 0.2s;
+    }
+    .floating-email:hover { background: var(--accent); color: #191919; }
+    .credit {
+      text-align: center;
+      margin-top: 2.5rem;
+      color: var(--accent);
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      opacity: 0.8;
+      text-shadow: var(--glow);
+    }
+    .social-row {
+      display: flex;
+      gap: 1.2rem;
+      margin: 1.2rem 0;
+      flex-wrap: wrap;
+    }
+    .social-btn {
+      background: var(--card);
+      color: var(--accent);
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      width: 48px; height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      box-shadow: 0 2px 8px #0007;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      text-decoration: none;
+    }
+    .social-btn:hover {
+      background: var(--accent);
+      color: #191919;
+    }
+    /* AI Chat Modal */
+    .ai-modal-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(10,10,10,0.98);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.6s;
+    }
+    .ai-modal-bg.active { display: flex; }
+    .ai-modal {
+      width: 95vw; max-width: 420px;
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 2.5rem 1.5rem 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(40px) scale(0.98);
+      animation: aiOpen 0.8s forwards;
+    }
+    .ai-modal h3 {
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      text-shadow: var(--glow);
+    }
+    .ai-chat-bubble {
+      background: #222;
+      color: var(--accent);
+      padding: 1.2rem 1rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px #0006;
+      margin: 1.2rem 0;
+      font-size: 1.08rem;
+      text-align: left;
+      width: 100%;
+      line-height: 1.6;
+      animation: fadeInUp 1.3s;
+    }
+    .ai-close-btn {
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-size: 2rem;
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .ai-close-btn:hover { color: var(--warm); }
+    /* Animations */
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(60px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0;}
+      100% { opacity: 1;}
+    }
+    @keyframes aiOpen {
+      0% { opacity: 0; transform: translateY(40px) scale(0.98);}
+      100% { opacity: 1; transform: translateY(0) scale(1);}
+    }
+    @keyframes floatIn {
+      0% { opacity: 0; transform: translateY(40px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+    @media (max-width: 600px) {
+      main { padding: 1rem;}
+      .menu-list { padding: 1.2rem 0.7rem;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">&#8942;</button>
+    <span class="logo">Manish Regar</span>
+    <div class="subtitle">Official Portfolio &mdash; Ethical Hacker &amp; Web Developer</div>
+  </header>
+
+  <!-- Menu Modal -->
+  <div class="menu-modal" id="menuModal">
+    <button class="close-menu" id="closeMenu" aria-label="Close menu">&times;</button>
+    <div class="menu-list">
+      <button onclick="scrollToSection('about')">About Me &amp; Mission</button>
+      <button onclick="scrollToSection('abilities')">My Abilities</button>
+      <button onclick="scrollToSection('services')">Services</button>
+      <button onclick="scrollToSection('selling')">Selling</button>
+      <button onclick="scrollToSection('contact')">Contact Information</button>
+      <button onclick="scrollToSection('social')">Social Media</button>
+      <button onclick="scrollToSection('help')">Help Center</button>
+      <button onclick="scrollToSection('charges')">My Charges</button>
+      <button onclick="scrollToSection('journey')">My Journey</button>
+      <button onclick="scrollToSection('support')">Support</button>
+      <button onclick="scrollToSection('ai')">AI Support</button>
+      <button onclick="window.open('mailto:ask.manish.regar@gmail.com')">Email Me</button>
+      <button onclick="window.open('https://wa.me/919371010561')">WhatsApp Me</button>
+    </div>
+  </div>
+
+  <main>
+    <!-- About Me -->
+    <section id="about">
+      <h2>About Me</h2>
+      <p>Hello, I’m <span class="glow">Manish Regar</span>, a 14-year-old tech enthusiast and ethical hacker from Pune, Maharashtra (roots in Rajasthan). Currently in Class 9, I’m passionate about making the internet safer and more accessible. My motto: <b>"Honesty is the Best Policy"</b>. I help companies secure their systems, create engaging content, and build a safer digital world.</p>
+      <ul>
+        <li>Age: <b>14 years</b></li>
+        <li>Location: Pune, Maharashtra</li>
+        <li>Education: Class 9</li>
+        <li>Values: Honesty, Trust, Hard Work</li>
+        <li>Interests: Ethical hacking, content creation, web development</li>
+      </ul>
+    </section>
+
+    <!-- Mission -->
+    <section>
+      <h2>My Mission</h2>
+      <p>To create a safer, stronger, and more inclusive internet. I protect businesses from vulnerabilities, empower individuals with affordable tech solutions, and inspire others through my content. My goal: <b>Every website secure, every business thriving, every person empowered.</b></p>
+    </section>
+
+    <!-- Abilities -->
+    <section id="abilities">
+      <h2>My Abilities</h2>
+      <ul>
+        <li><b>Ethical Hacking & Bug Finding:</b> Identify price glitches & vulnerabilities, provide solutions to protect businesses.</li>
+        <li><b>Website Development:</b> Custom, secure, and responsive sites for individuals & businesses.</li>
+        <li><b>OTP Services:</b> Fast, secure OTPs for any app/platform.</li>
+        <li><b>Social Media Growth:</b> Boost likes, followers, comments, and accounts.</li>
+        <li><b>Premium Subscriptions:</b> Affordable YouTube Premium, Discord Nitro, and more.</li>
+        <li><b>Content Creation:</b> Engaging videos and stories on YouTube & social media.</li>
+      </ul>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+      <h2>Services</h2>
+      <ol>
+        <li><b>Website Development:</b> Custom-built, responsive, secure, and SEO-optimized websites. <br><i>Contact for quote.</i></li>
+        <li><b>Bug Finding & Ethical Hacking:</b> Identify & fix vulnerabilities, price glitches. <br><i>Contact for quote.</i></li>
+        <li><b>OTP Services:</b> Any app, instant delivery. <br>
+          <ul>
+            <li>Any App: ₹10/- per OTP</li>
+            <li>Telegram/WhatsApp: ₹76/- per OTP</li>
+            <li>Bulk: Contact for pricing</li>
+          </ul>
+        </li>
+        <li><b>Social Media Boosts:</b> Likes, followers, comments, ready accounts. <br>
+          <ul>
+            <li>Likes/Followers/Comments: from ₹0.50/- per unit</li>
+            <li>Instagram Ready Accounts: ₹10/- each</li>
+          </ul>
+        </li>
+        <li><b>Premium Subscriptions:</b> YouTube Premium, Discord Nitro, etc. <br>
+          <ul>
+            <li>YouTube Premium: ₹30/- (1 month)</li>
+            <li>Discord Nitro: ₹50/-</li>
+          </ul>
+        </li>
+      </ol>
+      <p>Payment: UPI, Wallet, Gift Cards, USD, Crypto (upfront required).</p>
+    </section>
+
+    <!-- Selling -->
+    <section id="selling">
+      <h2>Selling</h2>
+      <ul>
+        <li><b>OTP Services:</b> Any app, Telegram/WhatsApp, bulk options.</li>
+        <li><b>Social Media Boosts:</b> Likes, followers, comments, ready accounts.</li>
+        <li><b>Premium Subscriptions:</b> YouTube Premium, Discord Nitro, more.</li>
+        <li><b>Website Development:</b> Custom sites for any need.</li>
+        <li><b>Bug Finding Reports:</b> Price glitches, vulnerabilities, custom reports.</li>
+      </ul>
+      <a class="btn" href="https://wa.me/919371010561" target="_blank">Tap to Buy on WhatsApp</a>
+    </section>
+
+    <!-- Contact Information -->
+    <section id="contact">
+      <h2>Contact Information</h2>
+      <div class="contact-row">
+        <a class="contact-btn" href="https://wa.me/919371010561" target="_blank">
+          <span>📱</span> WhatsApp (Primary)
+        </a>
+        <a class="contact-btn" href="https://wa.me/918421210561" target="_blank">
+          <span>📞</span> WhatsApp (Support)
+        </a>
+      </div>
+      <div class="contact-row">
+        <a class="contact-btn" href="mailto:ask.manish.regar@gmail.com">
+          <span>✉️</span> ask.manish.regar@gmail.com
+        </a>
+        <a class="contact-btn" href="mailto:manishregar1010@gmail.com">
+          <span>✉️</span> manishregar1010@gmail.com
+        </a>
+      </div>
+      <div class="contact-row">
+        <span>Query Line (24x7): <b>9371010561</b></span>
+      </div>
+    </section>
+
+    <!-- Social Media -->
+    <section id="social">
+      <h2>Social Media</h2>
+      <div class="social-row">
+        <a class="social-btn" href="https://youtube.com/@ManishCountryBall" target="_blank" title="YouTube">
+          <span>▶️</span>
+        </a>
+        <a class="social-btn" href="https://instagram.com/manish_regar369" target="_blank" title="Instagram">
+          <span>📸</span>
+        </a>
+        <a class="social-btn" href="https://twitter.com/Mr_manish_regar" target="_blank" title="X (Twitter)">
+          <span>🐦</span>
+        </a>
+        <a class="social-btn" href="https://reddit.com/user/ManishRegarOfficial" target="_blank" title="Reddit">
+          <span>👽</span>
+        </a>
+        <a class="social-btn" href="https://facebook.com/ManishRegarOfficial" target="_blank" title="Facebook">
+          <span>📘</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Help Center -->
+    <section id="help">
+      <h2>24×7 Help Center</h2>
+      <p>For any questions, orders, or support:</p>
+      <ul>
+        <li>WhatsApp (Primary): <b>+91 9371010561</b> (24×7)</li>
+        <li>WhatsApp (Support): <b>+91 8421210561</b> (6 AM – 3 AM IST, 7 days)</li>
+        <li>Email: <b>ask.manish.regar@gmail.com</b> or <b>manishregar1010@gmail.com</b></li>
+      </ul>
+      <p>Response time: WhatsApp (1–2h), Email (12–24h). Payment required upfront for all services.</p>
+    </section>
+
+    <!-- Charges (optional) -->
+    <section id="charges">
+      <h2>My Charges</h2>
+      <ul>
+        <li>Any App OTP: ₹10/- per OTP</li>
+        <li>Telegram/WhatsApp OTP: ₹76/- per OTP</li>
+        <li>Instagram Ready Account: ₹10/- each</li>
+        <li>YouTube Premium (1 month): ₹30/-</li>
+        <li>Discord Nitro: ₹50/-</li>
+        <li>Website Development, Bug Reports: Contact for quote</li>
+      </ul>
+    </section>
+
+    <!-- Journey (optional) -->
+    <section id="journey">
+      <h2>My Journey</h2>
+      <p>From a small village in Rajasthan to Pune, I’ve helped businesses secure their systems, grown a YouTube channel, and built a community of learners. My journey is about honesty, learning, and making a difference—one project at a time.</p>
+    </section>
+
+    <!-- Support (optional) -->
+    <section id="support">
+      <h2>Support</h2>
+      <p>For buying, support, or queries, use the floating WhatsApp or email buttons, or the contact info above. I’m always here to help!</p>
+    </section>
+
+    <!-- AI Support (section anchor for menu) -->
+    <section id="ai"></section>
+
+    <div class="credit">
+      Made by Manish Regar &middot; All Rights Reserved &middot; Floating AI Support &rarr; (see bottom right)
+    </div>
+  </main>
+
+  <!-- Floating AI Support Button -->
+  <div class="floating-support" id="aiBtn" title="AI Chat Support">
+    🤖
+  </div>
+  <!-- Floating Email Button -->
+  <a class="floating-email" href="mailto:ask.manish.regar@gmail.com" title="Email Support">
+    ✉️
+  </a>
+
+  <!-- AI Chat Modal -->
+  <div class="ai-modal-bg" id="aiModalBg">
+    <div class="ai-modal">
+      <button class="ai-close-btn" id="aiCloseBtn" aria-label="Close AI chat">&times;</button>
+      <h3>Manish Regar AI Support</h3>
+      <div class="ai-chat-bubble">
+        Thanks for your patience. We're currently handling a high volume of chats.<br><br>
+        Please email us at <b>ask.manish.regar@gmail.com</b> with a brief note and any images/videos of the issue — we'll get back to you within 48 hours.<br><br>
+        For any buying purpose contact <b>9371010561</b> IST.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Menu Modal
+    const menuBtn = document.getElementById('menuBtn');
+    const menuModal = document.getElementById('menuModal');
+    const closeMenu = document.getElementById('closeMenu');
+    menuBtn.onclick = () => menuModal.classList.add('active');
+    closeMenu.onclick = () => menuModal.classList.remove('active');
+    menuModal.onclick = (e) => { if(e.target === menuModal) menuModal.classList.remove('active'); };
+    // Scroll to section
+    window.scrollToSection = function(id) {
+      menuModal.classList.remove('active');
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if(el) el.scrollIntoView({behavior: "smooth"});
+      }, 200);
+    }
+    // AI Modal
+    const aiBtn = document.getElementById('aiBtn');
+    const aiModalBg = document.getElementById('aiModalBg');
+    const aiCloseBtn = document.getElementById('aiCloseBtn');
+    aiBtn.onclick = () => aiModalBg.classList.add('active');
+    aiCloseBtn.onclick = () => aiModalBg.classList.remove('active');
+    aiModalBg.onclick = (e) => { if(e.target === aiModalBg) aiModalBg.classList.remove('active'); };
+  </script>
+</body>
+</html>
